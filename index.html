@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COCOLAB - Brinda Sin Resaca</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+    /* Variables globales para paleta y tipografía */
+    :root {
+      --primary: #00C2A0;
+      --secondary: #FFE66D;
+      --dark: #1E1E1E;
+      --light: #FFFFFF;
+      --font: 'Arial', sans-serif;
+    }
+    /* Reset global */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font);
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* ======== HEADER ======== */
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('https://source.unsplash.com/1600x900/?cocktail,fruit') center/cover no-repeat;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      mix-blend-mode: multiply;
+    }
+    header h1 { position: relative; font-size: 3rem; color: var(--light); animation: fadeInUp 1.5s ease-out; }
+    header p { position: relative; margin-top: 1rem; font-size: 1.2rem; color: var(--light); animation: fadeInUp 1.8s ease-out; }
+    .btn-cta {
+      position: relative;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      color: var(--dark);
+      background: linear-gradient(to right, var(--secondary), #fff176);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeInUp 2.1s ease-out;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .btn-cta:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+    /* ======== SECCIONES CON EFECTO DE APARICIÓN ======== */
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInSection 1s ease forwards;
+      animation-delay: 0.3s;
+    }
+    @keyframes fadeInSection {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ======== SECCIÓN ACERCA ======== */
+    section#about {
+      padding: 4rem 2rem;
+      background: var(--light);
+      text-align: center;
+    }
+    section#about h2 { font-size:2rem; margin-bottom:1rem; }
+    section#about p { max-width:800px; margin:0 auto; font-size:1rem; line-height:1.6; }
+
+    /* ======== CARACTERÍSTICAS ======== */
+    section.features {
+      padding: 4rem 2rem;
+      background: var(--light);
+      clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+    }
+    .features .container {
+      max-width:1200px; margin:auto;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem;
+    }
+    .features .card {
+      background:var(--secondary); border-radius:20px; padding:2rem; text-align:center;
+      transition:transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .features .card:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+    .features .card img { width:80px; margin-bottom:1rem; }
+
+    /* ======== PRODUCTOS ======== */
+    section#products {
+      padding:4rem 2rem;
+      background:#f9f9f9;
+    }
+    .products .grid {
+      max-width:1200px; margin:auto;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:2rem;
+    }
+    .products .item {
+      background:var(--light); border-radius:15px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      transition:transform 0.3s;
+    }
+    .products .item:hover { transform: translateY(-5px); }
+    .products img { width:100%; display:block; }
+    .products .info { padding:1rem; }
+    .products .item h4 { font-size:1.2rem; margin-bottom:0.5rem; }
+    .products .desc { font-size:0.9rem; margin-bottom:0.5rem; color:#555; }
+    .products .price { font-size:1rem; font-weight:bold; color:var(--primary); }
+
+    /* ======== SECCIÓN COMPRA ======== */
+    section#comprar {
+      padding:4rem 2rem; background: var(--light);
+    }
+    #comprar h2 { text-align:center; font-size:2rem; margin-bottom:1rem; }
+    #order-form {
+      max-width:600px; margin:auto; display:flex; flex-direction:column; gap:1rem;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    #order-form input, #order-form select, #order-form textarea {
+      padding:0.8rem; font-size:1rem; border:1px solid #ccc; border-radius:8px;
+    }
+    #order-form button {
+      padding:1rem; background:var(--primary); color:var(--light); border:none; border-radius:50px; cursor:pointer; font-size:1rem;
+      transition:background 0.3s;
+    }
+    #order-form button:hover { background:#01917a; }
+
+    /* ======== FOOTER ======== */
+    footer { padding:2rem; text-align:center; background:var(--dark); color:var(--light); }
+    .socials { margin:1rem 0; }
+    .socials a { margin:0 0.5rem; color:var(--light); text-decoration:none; font-size:1.5rem; }
+    footer a { color:var(--primary); text-decoration:none; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <!-- HEADER: Título, slogan y CTA -->
+  <header>
+    <h1>#BrindaSinResaca</h1>
+    <p>Disfruta el sabor vivo de Medellín, sin alcohol ni culpas.</p>
+    <button class="btn-cta" onclick="document.getElementById('comprar').scrollIntoView({behavior:'smooth'})">¡Pide el tuyo!</button>
+  </header>
+
+  <!-- ACERCA DE LA EMPRESA -->
+  <section id="about">
+    <h2>¿Qué es COCOLAB?</h2>
+    <p>COCOLAB es la experiencia de un mocktail premium hecho en Medellín con <strong>100% ingredientes naturales</strong>. Jugos frescos, hierbas locales y frutas tropicales se combinan para ofrecer un trago sin alcohol, ideal para quienes buscan bienestar sin renunciar a la diversión. Nuestra misión es <em>‘Brindar momentos inolvidables, libres de culpa’</em> y promover un estilo de vida saludable y social.</p>
+  </section>
+
+  <!-- CARACTERÍSTICAS -->
+  <section class="features">
+    <div class="container">
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/coconut.png" alt="Natural">
+        <h3>100% Natural</h3>
+        <p>Solo jugos frescos y sin aditivos.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/sparkling-wine.png" alt="Sin Alcohol">
+        <h3>Sin Alcohol</h3>
+        <p>Disfruta cada sorbo sin resaca.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/location.png" alt="Local">
+        <h3>Orgullo Paisa</h3>
+        <p>Hecho con amor en Medellín.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS DESTACADOS CON DESCRIPCIONES Y PRECIOS -->
+  <section id="products">
+    <h2 style="text-align:center; font-size:2rem; margin-bottom:2rem;">Nuestros Sabores</h2>
+    <div class="grid products">
+      <div class="item">
+        <img src="https://source.unsplash.com/400x400/?passionfruit" alt="Mocktail Maracuyá">
+        <div class="info">
+          <h4>Maracuyá Fresh</h4>
+          <p class="desc">Un mix vibrante de maracuyá y hierbas frescas, refrescante y lleno de energía tropical.</p>
+          <p class="price">COP $12,000</p>
+        </div>
+      </div>
+      <div class="item">
+        <img src="https://source.unsplash.com/400x400/?strawberry" alt="Mocktail Fresa">
+        <div class="info">
+          <h4>Fresa Tropical</h4>
+          <p class="desc">Delicadas fresas locales combinadas con un toque de lima para un sabor equilibrado.</p>
+          <p class="price">COP $11,000</p>
+        </div>
+      </div>
+      <div class="item">
+        <img src="https://source.unsplash.com/400x400/?mint" alt="Mocktail Hierbabuena">
+        <div class="info">
+          <h4>Hierbabuena Chill</h4>
+          <p class="desc">Hierbabuena fresca mezclada con cítricos suaves para un efecto relajante y refrescante.</p>
+          <p class="price">COP $10,500</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO DE COMPRA -->
+  <section id="comprar">
+    <h2>Ordena tu COCOLAB</h2>
+    <form id="order-form" onsubmit="submitOrder(event)">
+      <input type="text" name="name" placeholder="Tu nombre*" required>
+      <input type="email" name="email" placeholder="Tu email*" required>
+      <select name="flavor" required>
+        <option value="">Selecciona sabor*</option>
+        <option value="maracuya">Maracuyá Fresh - $12,000</option>
+        <option value="fresa">Fresa Tropical - $11,000</option>
+        <option value="hierbabuena">Hierbabuena Chill - $10,500</option>
+      </select>
+      <textarea name="address" rows="3" placeholder="Dirección de entrega*" required></textarea>
+      <button type="submit">Comprar Ahora</button>
+    </form>
+  </section>
+
+  <!-- FOOTER: Información y redes sociales -->
+  <footer>
+    <p>Síguenos en redes:</p>
+    <div class="socials">
+      <a href="#" aria-label="Instagram">📸</a>
+      <a href="#" aria-label="TikTok">🎵</a>
+      <a href="#" aria-label="WhatsApp">💬</a>
+    </div>
+    <p>© 2025 COCOLAB. <a href="https://cocolab.example.com">Visita nuestro sitio</a></p>
+  </footer>
+
+  <!-- JavaScript simple para manejo del formulario -->
+  <script>
+    function submitOrder(e) {
+      e.preventDefault();
+      alert('¡Gracias por tu pedido! Pronto nos pondremos en contacto.');
+      document.getElementById('order-form').reset();
+    }
+  </script>
+</body>
+</html>
